@@ -6,7 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
 
     public CharacterController2D controller;
-    //public Hazards hazard;
+    public Hazards hazard;
     
     float hMove = 0f;
     public float runSpeed = 40f;
@@ -62,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.tag == "Hazard")
         {
-           // hazard.Reload(gameObject);
+            hazard.Reload(gameObject);
         }
         
     }
