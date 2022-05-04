@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 175717659}
   - component: {fileID: 175717655}
   - component: {fileID: 175717661}
+  - component: {fileID: 175717662}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -325,7 +326,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -346,9 +347,7 @@ LineRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Positions:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 1}
+  m_Positions: []
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.2
@@ -404,6 +403,25 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &175717662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 175717654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86272bda780746b43952de57c9f3b3d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GrappleableMask:
+    serializedVersion: 2
+    m_Bits: 64
+  maxDist: 10
+  grappleSpeed: 10
+  grappleShootSpeed: 100
+  retracting: 0
 --- !u!1 &256111818
 GameObject:
   m_ObjectHideFlags: 0
@@ -2260,7 +2278,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2110748899}
   - component: {fileID: 2110748900}
-  m_Layer: 0
+  - component: {fileID: 2110748901}
+  m_Layer: 6
   m_Name: GP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2275,7 +2294,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2110748898}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.66, y: 1.67, z: 8.4826145}
+  m_LocalPosition: {x: -1.39, y: 1.46, z: 8.4826145}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1841435419}
@@ -2332,3 +2351,29 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &2110748901
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110748898}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.013776779}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 0.5}
+    newSize: {x: 1, y: 0.5}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 0.47244644}
+  m_EdgeRadius: 0
