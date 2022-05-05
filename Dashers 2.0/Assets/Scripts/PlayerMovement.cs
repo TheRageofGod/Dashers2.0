@@ -22,38 +22,82 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rb;
     public int dashCount = 0;
     public int maxDash = 3;
+
+    public Transform wallGrabPoint;
+    bool canGrab;
+    bool isGrabbing;
+    public float wallJumpTime = 0.2f;
+    float wallJumpCounter;
+    float gravStore;
+    public float newJump = 2f;
+    public LayerMask whatIsGrabbable;
    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        gravStore = rb.gravityScale;
     }
 
     
     void Update()
     {
-        hMove = Input.GetAxisRaw("Horizontal") * runSpeed;
-        if (Input.GetButtonDown("Jump") && isGrounded) // bools default to true in an if statement so you dont need == true here
+        if (wallJumpCounter <= 0)
         {
-            jump = true;
-            isGrounded = false;
-        }
-        if(Input.GetKeyDown(KeyCode.LeftShift) && hMove != 0 && dashCount < maxDash)
-        {
-            isDashing = true;
-            CurrentDashTimer = StartDashTimer;
-            rb.velocity = Vector2.zero;
-            DashDirection = (int)hMove;
-            dashCount = dashCount + 1;
-        }
-        if (isDashing)
-        {
-            rb.velocity = transform.right * DashDirection * DashForce;
-            CurrentDashTimer -= Time.deltaTime;
-            if(CurrentDashTimer <= 0)
+            hMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+            if (Input.GetButtonDown("Jump") && isGrounded) // bools default to true in an if statement so you dont need == true here
             {
-                isDashing = false;
+                jump = true;
+                isGrounded = false;
+            }
+            if (Input.GetKeyDown(KeyCode.LeftShift) && hMove != 0 && dashCount < maxDash)
+            {
+                isDashing = true;
+                CurrentDashTimer = StartDashTimer;
+                rb.velocity = Vector2.zero;
+                DashDirection = (int)hMove;
+                dashCount = dashCount + 1;
+            }
+            if (isDashing)
+            {
+                rb.velocity = transform.right * DashDirection * DashForce;
+                CurrentDashTimer -= Time.deltaTime;
+                if (CurrentDashTimer <= 0)
+                {
+                    isDashing = false;
+                }
+            }
+
+            canGrab = Physics2D.OverlapCircle(wallGrabPoint.position, 0.2f, whatIsGrabbable);
+            isGrabbing = false;
+            if (canGrab && !isGrounded )
+            {
+                if ((transform.localScale.x == 1f && Input.GetAxisRaw("Horizontal") > 0) || (transform.localScale.x == -1f && Input.GetAxisRaw("Horizontal") < 0))
+                {
+                    isGrabbing = true;
+                }
+            }
+            if (isGrabbing)
+            {
+                rb.gravityScale = 0f;
+                rb.velocity = Vector2.zero;
+                if (Input.GetButtonDown("Jump"))
+                {
+                    wallJumpCounter = wallJumpTime;
+                    rb.velocity = new Vector2(-Input.GetAxisRaw("Horizontal") * runSpeed, newJump);
+                    rb.gravityScale = gravStore;
+                    isGrabbing = false;
+                }
+            }
+            else
+            {
+                rb.gravityScale = gravStore;
             }
         }
+        else
+        {
+            wallJumpCounter -= Time.deltaTime;
+        }
+
     }
 
     private void FixedUpdate()
@@ -77,4 +121,8 @@ public class PlayerMovement : MonoBehaviour
             dashCount = 0;
         }
     }
+    //based on Brackeys movement Tutorial, gamesplusjames's WallJumping tutorial & Muddy Wolf's Dash Tutorial, modified to suit game needs
+    //Muddy Wolf https://www.youtube.com/watch?v=yB6ty0Gj7tA
+    //Brackey https://www.youtube.com/watch?v=dwcT-Dch0bA
+    //gamesplusjames https://www.youtube.com/watch?v=uNJanDrjMgU
 }

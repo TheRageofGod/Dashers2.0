@@ -78,4 +78,5 @@ public class GrappleHook : MonoBehaviour
             retracting = true;
         }
     }
+    //created using Muddy Wolf's Grappling hook tutorial, slightly modified:https://www.youtube.com/watch?v=idiq5WjCAD8&list=PL5BlFaWRrKdD6GFfKApgnbCupcZTBXrat&index=1&t=266s
 }
