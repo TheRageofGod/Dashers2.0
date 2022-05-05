@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 
     public CharacterController2D controller;
     public Hazards hazard;
+    public PhaseWall phase;
     
     float hMove = 0f;
     public float runSpeed = 40f;
@@ -22,6 +23,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rb;
     public int dashCount = 0;
     public int maxDash = 3;
+    Collider2D col;
 
     public Transform wallGrabPoint;
     bool canGrab;
@@ -35,12 +37,14 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        col = GetComponent<Collider2D>();
         gravStore = rb.gravityScale;
     }
 
     
     void Update()
     {
+        
         if (wallJumpCounter <= 0)
         {
             hMove = Input.GetAxisRaw("Horizontal") * runSpeed;
@@ -56,6 +60,18 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = Vector2.zero;
                 DashDirection = (int)hMove;
                 dashCount = dashCount + 1;
+            }
+            if (Input.GetKeyDown(KeyCode.E) && hMove != 0 && dashCount < maxDash)
+            {
+                if (col.CompareTag("pass"))
+                {
+                    phase.Phase();
+                    isDashing = true;
+                    CurrentDashTimer = StartDashTimer;
+                    rb.velocity = Vector2.zero;
+                    DashDirection = (int)hMove;
+                    dashCount = dashCount + 1;
+                }
             }
             if (isDashing)
             {
