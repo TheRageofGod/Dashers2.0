@@ -275,10 +275,10 @@ GameObject:
   - component: {fileID: 175717657}
   - component: {fileID: 175717656}
   - component: {fileID: 175717660}
-  - component: {fileID: 175717659}
-  - component: {fileID: 175717655}
   - component: {fileID: 175717661}
   - component: {fileID: 175717662}
+  - component: {fileID: 175717659}
+  - component: {fileID: 175717655}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -304,7 +304,7 @@ MonoBehaviour:
   m_AirControl: 0
   m_WhatIsGround:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 503
   m_GroundCheck: {fileID: 1288617912}
   m_CeilingCheck: {fileID: 2036308790}
   m_CrouchDisableCollider: {fileID: 0}
@@ -398,8 +398,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 175717654}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1288660657}
@@ -407,7 +407,7 @@ Transform:
   - {fileID: 1288617912}
   - {fileID: 2036308790}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &175717659
 MonoBehaviour:
@@ -423,16 +423,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 175717655}
   hazard: {fileID: 256111819}
-  phase: {fileID: 0}
+  phase: {fileID: 1738186626}
   runSpeed: 40
   DashForce: 1
-  StartDashTimer: 0.25
-  isGrounded: 0
+  StartDashTimer: 0
+  isGrounded: 1
   dashCount: 0
   maxDash: 3
   wallGrabPoint: {fileID: 953541919}
-  wallJumpTime: 0.05
-  newJump: 0.05
+  wallJumpTime: 0.2
+  newJump: 2
   whatIsGrabbable:
     serializedVersion: 2
     m_Bits: 128
@@ -1729,7 +1729,7 @@ Transform:
   m_LocalScale: {x: 66.29591, y: 1.4601, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1539001353
 GameObject:
@@ -1935,7 +1935,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9dbfc2f12e329ae42a6e41a195dbd6af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wall: {fileID: 1738186622}
 --- !u!1 &1749406118
 GameObject:
   m_ObjectHideFlags: 0

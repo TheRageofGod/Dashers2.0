@@ -24,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
     public int dashCount = 0;
     public int maxDash = 3;
     Collider2D col;
+    public int phaseDashCount = 0;
+    public int phaseMaxDash = 1;
 
     public Transform wallGrabPoint;
     bool canGrab;
@@ -61,17 +63,14 @@ public class PlayerMovement : MonoBehaviour
                 DashDirection = (int)hMove;
                 dashCount = dashCount + 1;
             }
-            if (Input.GetKeyDown(KeyCode.E) && hMove != 0 && dashCount < maxDash)
+            if (Input.GetKeyDown(KeyCode.E) && hMove != 0 && phaseDashCount < phaseMaxDash)
             {
-                if (col.CompareTag("pass"))
-                {
                     phase.Phase();
-                    isDashing = true;
-                    CurrentDashTimer = StartDashTimer;
-                    rb.velocity = Vector2.zero;
-                    DashDirection = (int)hMove;
-                    dashCount = dashCount + 1;
-                }
+                isDashing = true;
+                CurrentDashTimer = StartDashTimer;
+                rb.velocity = Vector2.zero;
+                DashDirection = (int)hMove;
+                phaseDashCount = phaseDashCount + 1;
             }
             if (isDashing)
             {
@@ -135,6 +134,7 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = true;
             dashCount = 0;
+            phaseDashCount = 0;
         }
     }
     //based on Brackeys movement Tutorial, gamesplusjames's WallJumping tutorial & Muddy Wolf's Dash Tutorial, modified to suit game needs
