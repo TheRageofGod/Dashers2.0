@@ -59,7 +59,7 @@ public class GrappleHook : MonoBehaviour
             StartCoroutine(Grapple());
         }
 
-        IEnumerator Grapple() //this tell the system where we have hiot and how far everything is
+        IEnumerator Grapple() //this tell the system where we have hit and how far everything is
         {
             float t = 0;
             float time = 10;
