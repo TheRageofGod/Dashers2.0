@@ -72,3 +72,11 @@ The following packages were updated:
   com.unity.2d.spriteshape from version 5.1.7 to 5.2.0
   com.unity.analytics from version 3.5.3 to 3.6.12
   com.unity.purchasing from version 3.2.3 to 4.1.2
+
+=== Sun May  8 21:02:14 2022
+
+Packages were changed.
+Update Mode: mergeDefaultDependencies
+
+The following packages were added:
+  com.unity.2d.sprite@1.0.0
