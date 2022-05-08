@@ -6,13 +6,13 @@ using UnityEngine;
 
 public class Title : MonoBehaviour
 {
-    public void StartGame()
+    public void StartGame() //starts game
     {
         SceneManager.LoadScene("MainLevel");
         
     }
 
-    public void QuitGame()
+    public void QuitGame() // closes application
     {
         Application.Quit();
     }

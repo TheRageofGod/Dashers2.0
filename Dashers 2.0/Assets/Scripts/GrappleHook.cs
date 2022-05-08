@@ -49,7 +49,7 @@ public class GrappleHook : MonoBehaviour
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, maxDist, GrappleableMask);
 
-        if (hit.collider != null)
+        if (hit.collider != null) //sets conditions to be active
         {
             isGrappling = true;
             target = hit.point;
@@ -59,7 +59,7 @@ public class GrappleHook : MonoBehaviour
             StartCoroutine(Grapple());
         }
 
-        IEnumerator Grapple() //this tell the system where we have hit and how far everything is
+        IEnumerator Grapple() //this tell the system where we have hit and draw the line
         {
             float t = 0;
             float time = 10;
